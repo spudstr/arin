@@ -1,0 +1,22 @@
+default namespace bwi = "http://www.arin.net/bulkwhois/core/v1"
+namespace nv = "http://www.arin.net/noValidPocResources/core/v1"
+
+start =
+  element bwi:bulkwhois {
+    (# ASNs
+     external "asn.rnc"*,
+     # POCs
+     external "poc.rnc"*,
+     # orgs
+     external "org.rnc"*,
+     # nets
+     external "net.rnc"*)
+    & external "util/foreignElements.rnc"*
+  } |
+  element nv:noValidPocResources {
+    (# ASNs
+     external "asn.rnc"*,
+     # nets
+     external "net.rnc"*)
+    & external "util/foreignElements.rnc"*
+  }

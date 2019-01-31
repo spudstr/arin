@@ -1,0 +1,8 @@
+# See: http://books.xmlschemata.org/relaxng/relax-CHP-11-SECT-4.html
+
+namespace local = ""
+namespace ns1 = "http://www.arin.net/bulkwhois/core/v1"
+
+start = foreign-elements
+foreign-elements =
+  element * - (local:* | ns1:*) { external "anything.rnc" }*

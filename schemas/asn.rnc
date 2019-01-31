@@ -1,0 +1,33 @@
+default namespace = "http://www.arin.net/bulkwhois/core/v1"
+
+start = asn
+asn =
+  element asn {
+    (element ref { xsd:anyURI }?,
+     element pocLinks {
+       element pocLink {
+         attribute function { text }?,
+         # Possible Values for 'function':
+         #     AB (Abuse)
+         #     AD (Admin)
+         #     N  (NOC)
+         #     T  (Tech)
+         attribute description { text }?,
+         attribute handle { text }
+       }*
+     }?,
+     element endAsNumber { xsd:integer }?,
+     element handle { text },
+     element name { text }?,
+     element nameservers { text }?,
+     element orgHandle { text }?,
+     element orgName { text }?,
+     element netBlocks {
+       element netBlock { text }+
+     }?,
+     external "util/comment.rnc"?,
+     element registrationDate { xsd:dateTime }?,
+     element startAsNumber { xsd:integer }?,
+     element updateDate { xsd:dateTime }?)
+    & external "util/foreignElements.rnc"*
+  }

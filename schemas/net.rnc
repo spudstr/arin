@@ -1,0 +1,51 @@
+default namespace = "http://www.arin.net/bulkwhois/core/v1"
+
+start = net
+net =
+  element net {
+    (element ref { xsd:anyURI }?,
+     element endAddress { text }?,
+     element expirationDate { xsd:dateTime }?,
+     element handle { text },
+     element name { text }?,
+     element nameservers {
+       element nameserver { text }*
+     }?,
+     element netBlocks {
+       element netBlock {
+         element cidrLenth { xsd:integer }?,
+         element endAddress { text }?,
+         element type { text }?,
+         # Possible Values for 'type':
+         # A   (Reallocated)
+         # S   (Reassigned)
+         # DA  (Direct assignment)
+         # DS  (Direct allocation)
+         element startAddress { text }?
+       }+
+     },
+     element originASes {
+       element originAS { text }+
+     }?,
+     element pocLinks {
+       element pocLink {
+         attribute function { text }?,
+         # Possible Values for 'function':
+         #     AB (Abuse)
+         #     AD (Admin)
+         #     N  (NOC)
+         #     T  (Tech)
+         attribute description { text }?,
+         attribute handle { text }
+       }*
+     }?,
+     element orgHandle { text }?,
+     element orgName { text }?,
+     element parentNetHandle { text }?,
+     external "util/comment.rnc"?,
+     element registrationDate { xsd:dateTime }?,
+     element startAddress { text }?,
+     element updateDate { xsd:dateTime }?,
+     element version { xsd:integer }?)
+    & external "util/foreignElements.rnc"*
+  }

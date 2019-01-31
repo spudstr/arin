@@ -1,0 +1,36 @@
+default namespace = "http://www.arin.net/bulkwhois/core/v1"
+
+start = poc
+poc =
+  element poc {
+    (element ref { xsd:anyURI }?,
+     element city { text }?,
+     element companyName { text }?,
+     element iso3166-1 {
+       element code2 { text }?,
+       element code3 { text }?,
+       element name { text }?,
+       element e164 { text }?
+     }?,
+     element firstName { text }?,
+     element handle { text },
+     element isRoleAccount { text }?,
+     element emails {
+       element email { text }+
+     }?,
+     element middleName { text }?,
+     element lastName { text }?,
+     element phones { external "util/phone.rnc"+ }?,
+     element postalCode { text }?,
+     element registrationDate { xsd:dateTime }?,
+     element iso3166-2 { text }?,
+     element iso3166 { text }?,
+     element streetAddress {
+       element line {
+         attribute number { xsd:integer },
+         text
+       }+
+     }?,
+     element updateDate { xsd:dateTime })?
+    & external "util/foreignElements.rnc"*
+  }

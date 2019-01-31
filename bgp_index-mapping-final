@@ -1,0 +1,60 @@
+curl -X PUT "https://vpc-natnet-kmbcrdvwinm6dguedg4rytp6jy.us-east-1.es.amazonaws.com/bgp_index" -H 'Content-Type: application/json' -d'
+{
+    "mappings": {
+      "bgp_type": {
+        "properties": {
+          "DateAdded": {
+            "type": "date",
+            "format": "yyyy-MM-dd HH:mm:ss"
+          },
+          "DateTime": {
+            "type": "date",
+            "format": "yyyy-MM-dd HH:mm:ss"
+          },
+          "aspath": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "bgpCommunities": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "neighbor": {
+            "type": "ip"
+          },
+          "neighborInfo": {
+           "type": "nested",
+            "properties": {
+              "asn": { "type": "integer" },
+              "neighborIP": { "type": "ip" }
+             }
+          },
+          "prefix": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 15
+                }
+            }
+          },
+          "srcASN": {
+            "type": "integer"
+          },
+          "timestamp": {
+            "type": "date"
+          }
+        }
+      }
+    }
+  }

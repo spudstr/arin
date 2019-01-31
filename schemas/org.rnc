@@ -1,0 +1,44 @@
+default namespace = "http://www.arin.net/bulkwhois/core/v1"
+
+start = org
+org =
+  element org {
+    (element ref { xsd:anyURI }?,
+     element canAllocate { text }?,
+     element city { text }?,
+     element iso3166-1 {
+       element code2 { text }?,
+       element code3 { text }?,
+       element name { text }?,
+       element e164 { text }?
+     }?,
+     element handle { text },
+     element customer { text }?,
+     element name { text }?,
+     element pocLinks {
+       element pocLink {
+         attribute function { text }?,
+         # Possible Values for 'function':
+         #     AB (Abuse)
+         #     AD (Admin)
+         #     N  (NOC)
+         #     T  (Tech)
+         attribute description { text }?,
+         attribute handle { text }?
+       }*
+     }?,
+     element parentOrgHandle { text }?,
+     element postalCode { text }?,
+     element referralServer { text }?,
+     external "util/comment.rnc"?,
+     element registrationDate { xsd:dateTime }?,
+     element iso3166-2 { text }?,
+     element streetAddress {
+       element line {
+         attribute number { xsd:integer }?,
+         text
+       }+
+     }?,
+     element updateDate { xsd:dateTime }?)
+    & external "util/foreignElements.rnc"*
+  }

@@ -1,0 +1,21 @@
+default namespace = "http://www.arin.net/bulkwhois/core/v1"
+
+start = phone
+phone =
+  element phone {
+    element number {
+      element phoneNumber { text },
+      element phoneType { text }?,
+      element pocHandle { text }?
+    },
+    element extension { text? }?,
+    element type {
+      element description { text }?,
+      element code { text }?
+      # Possible Values for 'code' / 'description':
+      # O / Office
+      # F / Fax
+      # M / Mobile
+      
+    }
+  }

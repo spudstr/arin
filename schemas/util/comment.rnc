@@ -1,0 +1,10 @@
+default namespace = "http://www.arin.net/bulkwhois/core/v1"
+
+start = comment
+comment =
+  element comment {
+    (element line {
+       attribute number { xsd:integer },
+       text?
+     })+
+  }
